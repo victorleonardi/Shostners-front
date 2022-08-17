@@ -1,26 +1,25 @@
 <template>
-  <Home msg="Welcome to Your Vue.js App"/>
+  <div id="app">
+    <HeaderLogo />
+    <!-- <FormBoxes /> -->
+    <HomePage />
+  </div>
 </template>
 
 <script>
-import Home from './components/Home.vue'
+import './styles/global.css'
+
+import HeaderLogo from "./components/Header-Logo.vue";
+import HomePage from "./pages/Home-Page.vue"
+// import FormBoxes from './components/Form-Boxes.vue';
+
 
 export default {
   name: 'App',
   components: {
-    Home
-  }
+    HeaderLogo,
+    HomePage
+    // FormBoxes
+}
 }
 </script>
-
-<style>
-#app {
-  font-family: 'Kanit';
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  color:#7A7A7A;
-}
-body {
-  background-color: #E7E7E7;
-}
-</style>

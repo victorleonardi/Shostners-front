@@ -1,5 +1,7 @@
 :root{
-    --color-background: #E7E7E7;
+    --color-background: #F5F5F5;
+    --color-text: #7A7A7A;
+    --color-button: #1E1C1C;
 }
 
 *{
@@ -7,6 +9,10 @@
     margin: 0;
     box-sizing: border-box;
     font-family: sans-serif;
+}
+
+body{
+    background-color: var(--color-background);
 }
 
 main{

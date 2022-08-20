@@ -1,16 +1,16 @@
 <template>
   <div id="app">
     <HeaderLogo />
-    <!-- <FormBoxes /> -->
-    <HomePage />
+    <!-- <FormBoxes > -->
+    <RegisterForm />
   </div>
 </template>
 
 <script>
 import './styles/global.css'
 
-import HeaderLogo from "./components/Header-Logo.vue";
-import HomePage from "./pages/Home-Page.vue"
+import HeaderLogo from "./components/HeaderLogo.vue";
+import RegisterForm from "./pages/RegisterForm.vue";
 // import FormBoxes from './components/Form-Boxes.vue';
 
 
@@ -18,7 +18,7 @@ export default {
   name: 'App',
   components: {
     HeaderLogo,
-    HomePage
+    RegisterForm
     // FormBoxes
 }
 }

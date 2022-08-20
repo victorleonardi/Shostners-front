@@ -5,7 +5,7 @@
         <a href="url">{{ viewUrl }}</a>
     </div>
     <form @submit.prevent="createPost">
-        <label>URL:</label>
+        <label>URL: (*)</label>
         <input type="url" v-model="apiConfig.url" required />
         <label>Name it:</label>
         <input type="text" v-model="apiConfig.name" maxlength="7" />
@@ -40,8 +40,6 @@ const axiosConfig = {
     'Content-Type': 'application/json'
 }
 
-const apiGatewayRegister = process.env.VUE_APP_API_GATEWAY_REGISTER
-
 export default{
     data() {
         return{
@@ -59,7 +57,7 @@ export default{
     methods: {
         createPost() {
             this.loading = true
-            axios.post(apiGatewayRegister, this.apiConfig, axiosConfig)
+            axios.post(process.env.VUE_APP_API_GATEWAY_REGISTER, this.apiConfig, axiosConfig)
             .then(({ data }) => {
                 this.viewUrl = data
                 this.loading = false

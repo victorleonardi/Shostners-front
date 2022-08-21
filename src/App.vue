@@ -11,7 +11,6 @@ import './styles/global.css'
 
 import HeaderNav from "./components/HeaderNav.vue";
 import RegisterForm from "./pages/RegisterForm.vue";
-// import FormBoxes from './components/Form-Boxes.vue';
 
 
 export default {
@@ -19,7 +18,6 @@ export default {
   components: {
     HeaderNav,
     RegisterForm
-    // FormBoxes
 }
 }
 </script>

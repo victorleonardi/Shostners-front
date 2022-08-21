@@ -5,9 +5,9 @@
         </router-link>
         <nav>
         <ul class="navbar-right">
-            <router-link><a href="/">Home</a></router-link>
-            <router-link><a href="/analytics">Analytics</a></router-link>
-            <router-link><a href="/about">About</a></router-link>
+            <li><router-link to="/">Home</router-link></li>
+            <li><router-link to="/analytics">Analytics</router-link></li>
+            <li><router-link to="/about">About</router-link></li>
         </ul>
         </nav>
     </header>
@@ -32,7 +32,7 @@ export default{
         /* background-color: white; */
     }
 
-    router-link, a {
+    li, a {
         font-family: sans-serif;
         font-weight: 700;
         font-size: 1.15em;
@@ -54,16 +54,17 @@ export default{
         list-style: none;
     }
 
-    .navbar-right router-link{
+    .navbar-right li{
         display: inline-block;
         padding: 0px 20px;
-    }
-
-    .navbar-right router-link a{
         transition: all 0.3s ease 0s;
     }
 
-    .navbar-right router-link a:hover{
+    .navbar-right li a{
+        transition: all 0.3s ease 0s;
+    }
+
+    .navbar-right li a:hover{
         color: #0088a9;
     }
 

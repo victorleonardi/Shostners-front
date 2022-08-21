@@ -58,10 +58,8 @@ export default{
     methods: {
         createPost() {
             this.loading = true
-            console.log(this.apiConfig)
             axios.post(process.env.VUE_APP_API_GATEWAY_REGISTER, this.apiConfig, axiosConfig)
             .then(({ data }) => {
-                console.log(this.apiConfig)
                 this.viewUrl = data
                 this.loading = false
                 this.apiConfig = Object.assign(apiSetup)

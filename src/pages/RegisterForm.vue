@@ -14,7 +14,8 @@
         <label>Start Date:</label>
         <input type="datetime-local" id="starting-date" v-model="apiConfig.start_date" />
         <label>End Date:</label>
-        <input type="datetime-local" id="ending-date" v-model="apiConfig.end_date" />
+        <!-- O valor de data vazio fica transformando em DEFAULT -->
+        <input type="datetime-local" id="ending-date" v-model="apiConfig.end_date"/>
         <label>Image:</label>
         <input type="file" accept="image/png, image/jpeg"/>
         <div class="submit">
@@ -31,9 +32,9 @@ import axios from 'axios'
 const apiSetup = {
     url:"",
     name:"",
-    category:"",
-    start_date:"",
-    end_date:""
+    category:undefined,
+    start_date:undefined,
+    end_date:undefined
 }
 
 const axiosConfig = {
@@ -46,9 +47,9 @@ export default{
             apiConfig : {
                 url:"",
                 name:"",
-                category:"",
-                start_date:"",
-                end_date:""
+                category:undefined,
+                start_date:undefined,
+                end_date:undefined
             },
             loading: false,
             viewUrl: null
@@ -57,8 +58,10 @@ export default{
     methods: {
         createPost() {
             this.loading = true
+            console.log(this.apiConfig)
             axios.post(process.env.VUE_APP_API_GATEWAY_REGISTER, this.apiConfig, axiosConfig)
             .then(({ data }) => {
+                console.log(this.apiConfig)
                 this.viewUrl = data
                 this.loading = false
                 this.apiConfig = Object.assign(apiSetup)

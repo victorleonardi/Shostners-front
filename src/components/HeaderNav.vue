@@ -65,7 +65,12 @@ export default{
     }
 
     .navbar-right li a:hover{
-        color: #0088a9;
+        color: var(--color-details);
+    }
+
+    .router-link-exact-active{
+        color: var(--color-details);
+        font-size: 1.4em;
     }
 
 </style>

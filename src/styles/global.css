@@ -5,6 +5,7 @@
     --color-text: #7A7A7A;
     --color-button: #1E1C1C;
     --color-nav: #D9D9D9;
+    --color-details: #0088a9;
 }
 
 *{
@@ -28,3 +29,4 @@ main{
     font-weight: 700;
     color:rgba(122, 122, 122, 72%); /*Fonte ta vindo diferente da planejada */
   }
+  

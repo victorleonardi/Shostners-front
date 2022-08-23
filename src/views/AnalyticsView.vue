@@ -2,17 +2,14 @@
     <div class="analytics">
         <h1>Analytics</h1>
         <h2>Find your shortened url's easely.</h2>
-        <DropdownSearch />
     </div>
 </template>
 
 <script>
-import DropdownSearch from "@/pages/DropdownSearch.vue";
 
     export default{
     name:"AnalyticsView",
     components: {
-      DropdownSearch
     }
 }
 </script>

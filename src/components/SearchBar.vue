@@ -63,7 +63,7 @@ import LineCharts from './LineCharts.vue'
         data() {
             return{
                 apiConfig: {
-                    encode:"tchuchuyojWWY04k"
+                    encode:""
                 },
                 loading: false,
                 analytics: false,

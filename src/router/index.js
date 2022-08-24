@@ -22,12 +22,12 @@ const routes = [
     component: AboutView
   },
   {
-    path: '/outofdate/:date&:time',
+    path: '/outofdate/:date/:time',
     name: 'outofdate',
     component: OutOfDateView
   },
   {
-    path: '/earlyondate/:date&:time',
+    path: '/earlyondate/:date/:time',
     name: 'earlyondate',
     component: EarlyOnDateView
   }

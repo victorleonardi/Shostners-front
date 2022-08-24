@@ -12,59 +12,90 @@
         </div>
     </div>
     <div class="analytics-box" v-if="analytics">
-        <h3 v-if="analytics">{{apiRes.url}}</h3>
-        <h3 v-if="analytics">{{apiRes.encode}}</h3>
-        <h3 v-if="analytics">{{apiRes.category}}</h3>
-        <h3 v-if="analytics">{{apiRes.start_date}}</h3>
-        <h3 v-if="analytics">{{apiRes.end_date}}</h3>
-        <h3 v-if="analytics">{{apiRes.view}}</h3>
+        <div class="total-analytics">
+            <div class="total-statistics">
+                <div class="url">
+                <h2> Url: </h2>
+                <a href="url">{{apiRes.url}}</a>
+                </div>
+                <div class="encode">
+                <h2> Encode: </h2>
+                <h3>{{apiRes.encode}}</h3>
+                </div>
+                <div class="category">
+                <h2> Category: </h2>
+                <h3>{{apiRes.category}}</h3>
+                </div>
+                <div class="start-date" v-if="apiRes.start_date">
+                <h2> Start Date: </h2>
+                <h3>{{apiRes.start_date}}</h3>
+                </div>
+                <div class="end-date" v-if="apiRes.end_date & apiRes.end_date!='3000-01-01T00:00:00.000Z'">
+                <h2> End Date </h2>
+                <h3>{{apiRes.end_date}}</h3>
+                </div>
+                <div class="total-views" v-if="apiRes.view">
+                <h2> Total Views: </h2>
+                <h3>{{apiRes.view}}</h3>
+                </div>
+            </div>
+            <div class="total-graphics">
+                <LineCharts/>
+            </div>
+        </div>
     </div>
 </template>
 
 <script>
 
-//     import axios from 'axios'
+import axios from 'axios'
+import LineCharts from './LineCharts.vue'
 
-import axios from 'axios';
-
-//     const apiSetup = {
-//         url:"",
-//         name:"",
-//         category:undefined,
-//         start_date:undefined,
-//         end_date:undefined
-//     }
-
+    const apiSetup = {
+        encode: ""
+    }
 
     export default{
         name:"SearchBar",
         components: {
+        LineCharts
         },
         data() {
             return{
                 apiConfig: {
-                    encode:""
+                    encode:"tchuchuyojWWY04k"
                 },
                 loading: false,
                 analytics: false,
+                chartData: undefined,
+                chartOptions: {
+                    responsive: true,
+                    maintainAspectRatio: false
+                },
+                chartLoad: false,
                 apiRes: {
                     url: "",
                     encode: "",
                     category: undefined,
                     start_date: undefined,
                     end_date: undefined,
-                    view: undefined
+                    view: 0
                 }
             }
         },
         methods: {
             getEncodeFiltered () {
-                axios.get(process.env.VUE_APP_API_GATEWAY_LINK)
+                axios.get(process.env.VUE_APP_API_GATEWAY_LINK + this.apiConfig.encode)
                 .then((res) => {
                     console.log(res.data)
                     this.analytics=true
-                    this.apiRes = res.data[0]
-                    console.log(this.apiRes)
+                    this.apiRes = res.data
+                    axios.get(process.env.VUE_APP_API_GATEWAY_ANALYTICS + this.apiRes.encode)
+                    .then((res) => {
+                        this.apiRes.view = res.data
+                        this.apiConfig = Object.assign(apiSetup)
+                        
+                    })
                 }
                 )
             }
@@ -108,7 +139,6 @@ import axios from 'axios';
         width: 50px;
         height: 100%;
         border-radius: 0 25px 25px 0;
-        /* background-color: yellowgreen; */
         text-align: center;
         line-height: 50px;
         }
@@ -118,4 +148,81 @@ import axios from 'axios';
         opacity: 65%;
     }
 
+    .search-bar-icon:active {
+        transform: translateY(1px);
+    }
+
+    .analytics-box{
+        min-width: 790px;
+        width: 80%;
+        margin: 30px auto;
+        background: white;
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.25);
+        text-align: left;
+        padding: 40px 40px;
+        border-radius: 10px;
+        justify-content: space-between;
+    }
+
+    .total-analytics {
+        display: flex;
+    }
+
+    .total-statistics{
+        display: block;
+        margin: auto;
+        align-items: center;
+        justify-content: center;
+    }
+
+    a {
+        font-size: 1.2em;
+        font-weight: bold;
+        word-wrap: break-word;
+        word-break: break-word;  
+    }
+
+    h3 {
+        font-size: 1.2em;
+        font-weight: normal;
+        word-wrap: break-word;
+        word-break: break-word;
+    }
+
+    .total-statistics div {
+        margin: 10px 0;
+    }
+
+    .total-graphics{
+        margin: auto;
+        align-items: center;
+        justify-content: center;
+    }
+
+    h4{
+        display: inline-block;
+        margin: 25px 0 15px;
+        font-size: 1em;
+        letter-spacing: 1px;
+        font-weight: bold;
+    }
+
+    .specific-date{
+        display: flex;
+    }
+
+    .specific-date input{
+        display: block;
+        width: 40%;
+        padding: 10px 6px;
+        box-sizing: border-box;
+        border: 2px solid var(--color-details);
+        border-radius: 5px;
+        color: var(--color-text);
+        font-size: 0.9em;
+    }
+
+    .total-graphics {
+        display: flex;
+    }
 </style>

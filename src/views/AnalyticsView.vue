@@ -2,15 +2,18 @@
     <div class="analytics">
         <h1>Analytics</h1>
         <h2>Find your shortened url's easely.</h2>
+        <SearchBar />
     </div>
 </template>
 
 <script>
+import SearchBar from '@/components/SearchBar.vue';
 
     export default{
     name:"AnalyticsView",
     components: {
-    }
+    SearchBar
+}
 }
 </script>
 
@@ -28,6 +31,7 @@
     h2{
       font-weight: 500;
       font-size: 2.5em;
+      margin-bottom: 5vh;
     }
     body{
       display: flex;

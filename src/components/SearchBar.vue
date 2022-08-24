@@ -40,7 +40,7 @@
                 </div>
             </div>
             <div class="total-graphics">
-                <LineCharts/>
+                <LineCharts v-bind:xData="xData" v-bind:yData="yData" v-if="chartLoad" />
             </div>
         </div>
     </div>
@@ -67,12 +67,13 @@ import LineCharts from './LineCharts.vue'
                 },
                 loading: false,
                 analytics: false,
+                xData:[],
                 chartData: undefined,
                 chartOptions: {
                     responsive: true,
                     maintainAspectRatio: false
                 },
-                chartLoad: false,
+                chartLoad: true,
                 apiRes: {
                     url: "",
                     encode: "",
@@ -94,7 +95,15 @@ import LineCharts from './LineCharts.vue'
                     .then((res) => {
                         this.apiRes.view = res.data
                         this.apiConfig = Object.assign(apiSetup)
-                        
+                        axios.get(process.env.VUE_APP_API_GATEWAY_GRAPHICS + this.apiRes.encode)
+                        .then((res) => {
+                            this.xData = res.data.x
+                            this.yData = res.data.y
+                            this.chartLoad = false
+                            this.$nextTick(() => {
+                                this.chartLoad = true
+                            })
+                        })
                     })
                 }
                 )
